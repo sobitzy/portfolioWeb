@@ -85,13 +85,14 @@ export const Hero: React.FC<HeroProps> = ({
   })();
 
   return (
-    <section className="relative pt-12 pb-16 md:pt-16 md:pb-20 border-b border-[#27272a] bg-[#0c0d0e] overflow-hidden">
+    /* overflow-x-clip prevents mobile horizontal scrollbars without clipping vertical radial light into a box */
+    <section className="relative pt-12 pb-12 lg:pt-12 lg:pb-12 border-b border-[#27272a] bg-[#0c0d0e] overflow-x-clip">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Poster-style unified composition: headline column + overlapping portrait stage */}
+        {/* Unified poster composition: headline column + overlapping bottom-anchored portrait stage */}
         <div className="grid grid-cols-1 lg:grid-cols-12 items-end gap-8 lg:gap-0">
           {/* Left Column: Headline, Positioning & CTAs */}
           <div className="lg:col-span-6 relative pb-4 lg:pb-12">
-            {/* Academic kicker — clean unboxed text with dot separator */}
+            {/* Academic kicker — unboxed text with dot separator */}
             <div className="relative z-10 flex flex-wrap items-center gap-2 text-xs font-mono text-zinc-400 mb-6 tracking-wide">
               <span className="text-[#f59e0b] font-semibold">University of Santo Tomas</span>
               <span aria-hidden="true">·</span>
@@ -100,7 +101,7 @@ export const Hero: React.FC<HeroProps> = ({
               <span>Manila, PH</span>
             </div>
 
-            {/* Layered Headline: base text (z-10) slides subtly behind shoulder, amber highlight (z-30) stays on top */}
+            {/* Layered Headline: base text (z-10) slides subtly behind shoulder, amber highlight (z-30) stays unobstructed */}
             <h1 className="relative text-3xl sm:text-4xl lg:text-[3rem] font-extrabold uppercase tracking-[-0.03em] text-white leading-[1.05] mb-6 [text-wrap:balance]">
               <span className="relative z-10">BUILDING DIGITAL EXPERIENCES THROUGH </span>
               <span className="relative z-30 text-transparent bg-clip-text bg-gradient-to-r from-[#f59e0b] via-amber-200 to-amber-500">
@@ -115,12 +116,12 @@ export const Hero: React.FC<HeroProps> = ({
               photography, videography, and event-based creative production.
             </p>
 
-            {/* Primary Calls to Action — high-contrast #f59e0b with text-black */}
+            {/* Primary Calls to Action */}
             <div className="relative z-30 flex flex-wrap items-center gap-3">
               <button
                 type="button"
                 onClick={onExploreProjects}
-                className="flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-lg bg-[#f59e0b] text-black hover:bg-[#d97706] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f59e0b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c0d0e] transition-colors whitespace-nowrap"
+                className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-lg bg-[#f59e0b] text-black hover:bg-[#d97706] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f59e0b] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c0d0e] transition-colors whitespace-nowrap"
               >
                 <Code2 className="w-4 h-4" />
                 View My Projects
@@ -129,7 +130,7 @@ export const Hero: React.FC<HeroProps> = ({
               <button
                 type="button"
                 onClick={onExploreCreative}
-                className="flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-lg bg-[#18191e] border border-[#27272a] text-zinc-200 hover:text-white hover:border-zinc-400 hover:bg-[#22242a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f59e0b] transition-colors whitespace-nowrap"
+                className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-lg bg-[#18191e] border border-[#27272a] text-zinc-200 hover:text-white hover:border-zinc-400 hover:bg-[#22242a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f59e0b] transition-colors whitespace-nowrap"
               >
                 <Camera className="w-4 h-4 text-[#f59e0b]" />
                 Explore Creative Work
@@ -147,7 +148,7 @@ export const Hero: React.FC<HeroProps> = ({
           </div>
 
           {/* Right Column: Frameless Portrait Stage overlapping headline at lg+ */}
-          <div className="lg:col-span-6 relative z-20 lg:-ml-8 xl:-ml-20 flex flex-col items-center justify-end self-end">
+          <div className="lg:col-span-6 relative z-20 lg:-ml-12 xl:-ml-20 flex flex-col items-center lg:items-start justify-end self-end">
             <input
               ref={fileInputRef}
               type="file"
@@ -157,36 +158,72 @@ export const Hero: React.FC<HeroProps> = ({
               aria-label="Upload business attire portrait photo"
             />
 
-            {/* Stage container: no card border, no background fill, no rounded frame */}
-            <div className="group relative w-[85%] sm:w-[420px] lg:w-full flex flex-col items-center justify-end">
+            {/* Stage container: no card border, no bg fill, no rounded frame, no clipping blur boxes */}
+            <div className="group relative w-[85%] sm:w-[400px] lg:w-full flex flex-col items-center lg:items-start justify-end">
               {showImage ? (
                 <>
-                  {/* Optional subtle radially masked dot grid behind subject */}
+                  {/* Elliptical radial amber light: fades naturally to transparent before reaching any edge (no blur filter, no box) */}
                   <div
-                    className="absolute inset-0 bg-grid-pattern opacity-35 pointer-events-none"
-                    style={{
-                      maskImage: 'radial-gradient(circle at 50% 45%, black 20%, transparent 72%)',
-                      WebkitMaskImage: 'radial-gradient(circle at 50% 45%, black 20%, transparent 72%)',
-                    }}
-                    aria-hidden="true"
-                  />
-
-                  {/* Single radial amber spotlight (~480px) centered at head/shoulder height */}
-                  <div
-                    className="absolute top-[6%] left-1/2 -translate-x-1/2 w-[320px] h-[320px] sm:w-[480px] sm:h-[480px] rounded-full blur-3xl pointer-events-none"
+                    className="absolute -inset-12 z-0 pointer-events-none"
                     style={{
                       background:
-                        'radial-gradient(circle, rgba(245,158,11,0.22) 0%, rgba(245,158,11,0.08) 45%, transparent 72%)',
+                        'radial-gradient(ellipse 55% 60% at 50% 40%, rgba(245,158,11,0.28), transparent 70%)',
                     }}
                     aria-hidden="true"
                   />
 
-                  {/* Subject cutout: bottom-anchored, amber rim light, bottom 18% fades into #0c0d0e */}
+                  {/* Optional subtle radially masked dot grid behind subject */}
                   <div
-                    className="relative w-full h-[380px] sm:h-[450px] lg:h-[490px] flex items-end justify-center overflow-visible"
+                    className="absolute inset-0 bg-grid-pattern opacity-35 z-0 pointer-events-none"
                     style={{
-                      maskImage: 'linear-gradient(to bottom, black 82%, transparent 100%)',
-                      WebkitMaskImage: 'linear-gradient(to bottom, black 82%, transparent 100%)',
+                      maskImage: 'radial-gradient(circle at 50% 42%, black 20%, transparent 70%)',
+                      WebkitMaskImage: 'radial-gradient(circle at 50% 42%, black 20%, transparent 70%)',
+                    }}
+                    aria-hidden="true"
+                  />
+
+                  {/* Single decorative amber ring centered behind the subject's head */}
+                  <div
+                    className="absolute top-[2%] left-1/2 -translate-x-1/2 w-[280px] h-[280px] lg:w-[420px] lg:h-[420px] rounded-full border border-[rgba(245,158,11,0.25)] z-0 pointer-events-none"
+                    aria-hidden="true"
+                  />
+
+                  {/* Desktop two-line name label positioned at photo's top-right (never over body or face) */}
+                  <div className="hidden lg:block absolute top-2 right-0 z-30 text-right font-mono text-[11px] leading-snug pointer-events-none">
+                    <div className="text-zinc-100 font-medium">David Jed Gutierrez</div>
+                    <div className="text-zinc-400">IT Candidate · UST</div>
+                  </div>
+
+                  {/* Keyboard-accessible Replace/Reset photo controls (hover/focus only) */}
+                  <div className="absolute top-2 left-2 lg:top-12 lg:left-auto lg:right-0 z-30 flex items-center gap-2 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 focus-within:opacity-100 transition-opacity duration-200 motion-reduce:transition-none">
+                    <button
+                      type="button"
+                      onClick={() => fileInputRef.current?.click()}
+                      className="flex items-center gap-1.5 px-3 py-2 text-xs font-medium rounded-lg bg-[#121316]/90 border border-[#27272a] text-zinc-100 hover:border-[#f59e0b] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f59e0b] transition-colors whitespace-nowrap"
+                    >
+                      <Upload className="w-3.5 h-3.5 text-[#f59e0b]" />
+                      Replace Photo
+                    </button>
+
+                    {hasCustomStoredPhoto && (
+                      <button
+                        type="button"
+                        onClick={handleResetPhoto}
+                        aria-label="Reset portrait to default"
+                        title="Reset portrait to default"
+                        className="p-2 rounded-lg bg-[#121316]/90 border border-[#27272a] text-zinc-300 hover:text-white hover:border-zinc-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f59e0b] transition-colors"
+                      >
+                        <RotateCcw className="w-3.5 h-3.5" />
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Bottom-anchored subject cutout (~105% of headline block on lg+) with bottom 12% fade into #0c0d0e */}
+                  <div
+                    className="relative z-10 w-full h-[380px] sm:h-[460px] lg:h-[520px] flex items-end justify-center overflow-visible"
+                    style={{
+                      maskImage: 'linear-gradient(to bottom, black 88%, transparent)',
+                      WebkitMaskImage: 'linear-gradient(to bottom, black 88%, transparent)',
                     }}
                   >
                     <img
@@ -199,44 +236,21 @@ export const Hero: React.FC<HeroProps> = ({
                       style={{
                         filter: 'drop-shadow(0 0 24px rgba(245, 158, 11, 0.25))',
                       }}
-                      className={`h-full w-auto max-w-full object-contain object-top lg:scale-[1.1] lg:origin-bottom select-none transition-opacity duration-300 motion-reduce:transition-none ${
+                      className={`h-full w-auto max-w-full object-contain object-top lg:scale-[1.08] lg:origin-bottom select-none transition-opacity duration-300 motion-reduce:transition-none ${
                         imgLoaded ? 'opacity-100' : 'opacity-0'
                       }`}
                     />
                   </div>
 
-                  {/* Hover / focus-only photo management controls (keyboard accessible) */}
-                  <div className="absolute top-3 right-3 z-30 flex items-center gap-2 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 focus-within:opacity-100 transition-opacity duration-200 motion-reduce:transition-none">
-                    <button
-                      type="button"
-                      onClick={() => fileInputRef.current?.click()}
-                      className="flex items-center gap-1.5 px-3 py-2 text-xs font-medium rounded-lg bg-[#121316]/85 backdrop-blur-md border border-[#27272a] text-zinc-100 hover:border-[#f59e0b] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f59e0b] transition-colors whitespace-nowrap"
-                    >
-                      <Upload className="w-3.5 h-3.5 text-[#f59e0b]" />
-                      Replace Photo
-                    </button>
-
-                    {hasCustomStoredPhoto && (
-                      <button
-                        type="button"
-                        onClick={handleResetPhoto}
-                        aria-label="Reset portrait to default"
-                        title="Reset portrait to default"
-                        className="p-2 rounded-lg bg-[#121316]/85 backdrop-blur-md border border-[#27272a] text-zinc-300 hover:text-white hover:border-zinc-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f59e0b] transition-colors"
-                      >
-                        <RotateCcw className="w-3.5 h-3.5" />
-                      </button>
-                    )}
-                  </div>
-
-                  {/* Floating Name Caption Chip centered on mobile, anchored bottom-left of stage on lg+ */}
-                  <div className="mt-3 mx-auto lg:mt-0 lg:mx-0 lg:absolute lg:bottom-4 lg:left-6 z-30 font-mono text-[11px] sm:text-xs text-zinc-200 bg-[#121316]/80 backdrop-blur-md border border-[#27272a] rounded-lg px-3 py-2 text-center lg:text-left">
-                    David Jed Gutierrez · IT Candidate · UST
+                  {/* Mobile two-line label centered cleanly below the photo */}
+                  <div className="mt-3 lg:hidden text-center font-mono text-[11px] leading-snug">
+                    <div className="text-zinc-100 font-medium">David Jed Gutierrez</div>
+                    <div className="text-zinc-400">IT Candidate · UST</div>
                   </div>
                 </>
               ) : (
                 /* Fallback upload placeholder card when image fails to load */
-                <div className="w-full max-w-[360px] aspect-[2/3] rounded-xl border border-[#27272a] bg-[#121316] flex flex-col items-center justify-center p-6 text-center space-y-4">
+                <div className="w-full max-w-[360px] mx-auto aspect-[2/3] rounded-xl border border-[#27272a] bg-[#121316] flex flex-col items-center justify-center p-6 text-center space-y-4">
                   <div className="w-24 h-24 rounded-full bg-[#18191e] border border-[#27272a] flex items-center justify-center text-zinc-400">
                     <UserCheck className="w-10 h-10 text-[#f59e0b]/80" strokeWidth={1.5} />
                   </div>
@@ -265,8 +279,8 @@ export const Hero: React.FC<HeroProps> = ({
           </div>
         </div>
 
-        {/* Highlight Metrics Strip (Tabular, clean unboxed layout) */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-[#27272a]/80">
+        {/* Highlight Metrics Strip: pulled up with lg:-mt-6 so the portrait's faded base rests on its top divider */}
+        <div className="relative z-30 grid grid-cols-2 md:grid-cols-4 gap-6 mt-8 lg:-mt-6 pt-8 border-t border-[#27272a]/80">
           <div>
             <div className="text-xs uppercase tracking-wider font-semibold text-zinc-400 mb-1">
               Academic Program
