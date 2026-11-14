@@ -26,7 +26,7 @@ export const ContactSection: React.FC = () => {
     // Build mailto link so user can send immediately from their mail client
     const subject = encodeURIComponent(`[${formState.opportunityType}] Portfolio Inquiry from ${formState.name}`);
     const body = encodeURIComponent(
-      `Hello DJ,\n\nName: ${formState.name}\nEmail: ${formState.email}\nOpportunity Type: ${formState.opportunityType}\n\nMessage:\n${formState.message}\n`
+      `Hello David Jed,\n\nName: ${formState.name}\nEmail: ${formState.email}\nOpportunity Type: ${formState.opportunityType}\n\nMessage:\n${formState.message}\n`
     );
 
     window.location.href = `mailto:${emailAddress}?subject=${subject}&body=${body}`;

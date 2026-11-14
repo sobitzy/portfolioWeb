@@ -16,7 +16,8 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
   };
 
   const handleCopyText = () => {
-    const plainResume = `DJ GUTIERREZ
+    // Full name updated to David Jed Gutierrez
+    const plainResume = `DAVID JED GUTIERREZ
 IT Student & Creative Technologist | University of Santo Tomas
 Email: dj.gutierrez.1221@gmail.com
 Location: Manila, Philippines
@@ -77,7 +78,7 @@ Tools & Platforms: Git/GitHub, Framer, Figma, Adobe Premiere Pro, Lightroom, DaV
           <div className="flex items-center gap-2 text-xs font-mono text-zinc-400">
             <span>Curriculum Vitae</span>
             <span aria-hidden="true">·</span>
-            <span className="text-[#f59e0b] font-semibold">DJ Gutierrez</span>
+            <span className="text-[#f59e0b] font-semibold">David Jed Gutierrez</span>
           </div>
 
           <div className="flex items-center gap-2">
@@ -116,10 +117,10 @@ Tools & Platforms: Git/GitHub, Framer, Figma, Adobe Premiere Pro, Lightroom, DaV
 
         {/* Printable Resume Canvas */}
         <div className="p-8 sm:p-12 space-y-8 bg-[#101114] text-zinc-200 print:bg-white print:text-black print:p-0">
-          {/* Header */}
+          {/* Header — prints cleanly with full name */}
           <div className="border-b border-[#27272a] pb-6 space-y-2">
             <h1 className="text-3xl font-extrabold text-white print:text-black tracking-tight">
-              DJ GUTIERREZ
+              DAVID JED GUTIERREZ
             </h1>
             <div className="text-sm font-semibold text-[#f59e0b] print:text-neutral-800">
               Information Technology Student &amp; Creative Technologist
@@ -215,7 +216,7 @@ Tools & Platforms: Git/GitHub, Framer, Figma, Adobe Premiere Pro, Lightroom, DaV
               <div>
                 <div className="flex items-center justify-between text-white print:text-black font-semibold">
                   <span>Data Science EDA Pipeline</span>
-                  <span className="text-xs font-mono text-sky-400">Python · Pandas · Seaborn</span>
+                  <span className="text-xs font-mono text-amber-300">Python · Pandas · Seaborn</span>
                 </div>
                 <p className="text-xs text-zinc-300 print:text-neutral-700 mt-1 leading-relaxed">
                   Exploratory data analysis notebooks for consumer behavior insights, statistical feature transformation,

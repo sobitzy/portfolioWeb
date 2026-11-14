@@ -14,8 +14,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenResume }) => {
     <footer className="border-t border-[#27272a] bg-[#090a0c] text-zinc-400 py-12 text-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
         <div>
+          {/* Updated brand name to David Jed Gutierrez */}
           <div className="font-bold text-white tracking-tight mb-1 text-sm">
-            DJ Gutierrez
+            David Jed Gutierrez
           </div>
           <p className="text-zinc-400">
             Information Technology · University of Santo Tomas (UST), Manila

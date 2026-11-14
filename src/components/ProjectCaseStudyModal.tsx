@@ -114,7 +114,7 @@ export const ProjectCaseStudyModal: React.FC<ProjectCaseStudyModalProps> = ({ pr
                   ? 'text-emerald-400'
                   : project.status === 'In Progress'
                   ? 'text-[#f59e0b]'
-                  : 'text-sky-400'
+                  : 'text-amber-300'
               }`}
             >
               {project.status}
